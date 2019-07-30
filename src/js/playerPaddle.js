@@ -5,9 +5,12 @@ import Paddle from './Paddle';
 import settings from './settings';
 
 const playerPaddle = {
+  // Initialize play paddle:
   init() {
     config.player = new Paddle(settings.game.directions.labels.left);
   },
+
+  // Constrain player paddle to board/canvas:
   constrainToBoard() {
     if (config.player.y < 0) {
       config.player.y = 0;
@@ -15,6 +18,8 @@ const playerPaddle = {
       config.player.y = config.canvas.height - config.player.height;
     }
   },
+
+  // Handle player paddle movements:
   move(key) {
     if (config.running === false) {
       config.running = true;
@@ -25,6 +30,8 @@ const playerPaddle = {
     if (key.keyCode === 40 || key.keyCode === 83)
       config.player.move = direction.down;
   },
+
+  // Stop player paddle:
   stop(evt) {
     config.player.move = direction.stopped;
   }

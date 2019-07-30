@@ -1,3 +1,4 @@
+// Directions:
 let direction = {
   stopped: 0,
   up: 1,

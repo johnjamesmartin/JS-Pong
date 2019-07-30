@@ -4,14 +4,19 @@ import Paddle from './Paddle';
 import settings from './settings';
 
 const cpuPaddle = {
+  // Initialize CPU paddle:
   init() {
     config.aiPlayer = new Paddle(settings.game.directions.labels.right);
   },
+
+  // Speed to set for CPU paddle:
   speed: {
     set() {
       config.aiPlayer.speed = settings.game.element.ball.aiPlayerSpeed;
     }
   },
+
+  // Check movement and adjust speed according to paddle position:
   check: {
     movement() {
       if (config.aiPlayer.y > config.ball.y - config.aiPlayer.height / 2) {

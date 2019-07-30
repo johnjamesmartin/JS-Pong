@@ -1,3 +1,4 @@
+// Configuration of various values:
 let config = {
   canvas: null,
   ctx: null,

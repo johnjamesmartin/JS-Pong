@@ -5,6 +5,7 @@ import gameBall from './gameBall';
 import playerPaddle from './playerPaddle';
 
 const game = {
+  // Initialize game:
   init() {
     canvasElement.init();
     playerPaddle.init();
@@ -16,6 +17,8 @@ const game = {
     canvasElement.listeners.set();
     canvasElement.update();
   },
+
+  // Update game:
   update() {
     if (!config.gameOver) {
       gameBall.check.collisions();
@@ -25,6 +28,8 @@ const game = {
       cpuPaddle.check.movement();
     }
   },
+
+  // Loop game:
   loop() {
     game.update();
     canvasElement.update();

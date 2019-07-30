@@ -1,3 +1,4 @@
+// Settings:
 const settings = {
   game: {
     score: {

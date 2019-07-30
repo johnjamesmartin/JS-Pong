@@ -4,14 +4,19 @@ import direction from './directions';
 import settings from './settings';
 
 const gameBall = {
+  // Initialze game ball:
   init() {
     config.ball = new Ball(settings.game.element.ball.playerSpeed);
   },
+
+  // Set target the ball has (player or CPU paddle):
   target: {
     set() {
       config.targetForBall = config.player;
     }
   },
+
+  // Move game ball:
   move() {
     if (config.player.move === direction.down) {
       config.player.y += config.player.speed;
@@ -19,6 +24,8 @@ const gameBall = {
       config.player.y -= config.player.speed;
     }
   },
+
+  // Reset game ball:
   reset(whoScored, whoLost) {
     whoScored.score++;
     let newBallSpeed = config.ball.speed + 0.2;
@@ -26,6 +33,8 @@ const gameBall = {
     config.targetForBall = whoLost;
     config.delayAmount = new Date().getTime();
   },
+
+  // Check game ball movement and adjust directions:
   check: {
     movement() {
       if (gameBall.check.delay() && config.targetForBall) {
@@ -50,14 +59,20 @@ const gameBall = {
         config.ball.x += config.ball.speed;
       }
     },
+
+    // Determine a delay between plays:
     delay() {
       return new Date().getTime() - config.delayAmount >= 1000;
     },
+
+    // Check for all game ball collisions:
     collisions() {
       gameBall.check.collision.hasPlayerMissed();
       gameBall.check.collision.hasCpuMissed();
       gameBall.check.collision.hasBoundaryHit();
     },
+
+    // Check for specific game ball collisions:
     collision: {
       hasPlayerMissed() {
         if (config.ball.x <= 0) {

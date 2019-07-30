@@ -3,23 +3,30 @@ import playerPaddle from './playerPaddle';
 import settings from './settings';
 
 const canvasElement = {
+  // Initialize canvas element:
   init() {
     config.canvas = document.getElementById('my-canvas');
     config.ctx = config.canvas.getContext('2d');
     config.canvas.width = settings.game.element.canvas.width;
     config.canvas.height = settings.game.element.canvas.height;
   },
+
+  // Add listeners to canvas element (in this case key up & key down):
   listeners: {
     set() {
       document.addEventListener('keydown', playerPaddle.move);
       document.addEventListener('keyup', playerPaddle.stop);
     }
   },
+
+  // Add delay amount to be used between plays:
   delay: {
     set() {
       config.delayAmount = new Date().getTime();
     }
   },
+
+  // Draw/redraw canvas (on loop):
   draw() {
     config.ctx.clearRect(0, 0, config.canvas.width, config.canvas.height);
     config.ctx.fillStyle = 'black';
@@ -56,6 +63,8 @@ const canvasElement = {
       100
     );
   },
+
+  // Check if we have a winner:
   check: {
     hasWinner() {
       if (config.player.score === settings.game.score.win) {
@@ -68,6 +77,8 @@ const canvasElement = {
       }
     }
   },
+
+  // Update canvas to redraw and check for a winner:
   update() {
     canvasElement.draw();
     canvasElement.check.hasWinner();
