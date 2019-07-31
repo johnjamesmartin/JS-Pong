@@ -6,4 +6,5 @@ body {
 #my-canvas {
   margin-left: 10px;
   margin-top: 10px;
+  transform: scale(0.8);
 }

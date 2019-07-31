@@ -1,6 +1,7 @@
 import config from './config';
 import playerPaddle from './playerPaddle';
 import settings from './settings';
+import labels from './labels';
 
 const gameboard = {
   // Initialize canvas element:
@@ -29,9 +30,9 @@ const gameboard = {
   // Draw/redraw canvas (on loop):
   draw() {
     config.ctx.clearRect(0, 0, config.canvas.width, config.canvas.height);
-    config.ctx.fillStyle = 'black';
+    config.ctx.fillStyle = '#000';
     config.ctx.fillRect(0, 0, config.canvas.width, config.canvas.height);
-    config.ctx.fillStyle = 'white';
+    config.ctx.fillStyle = '#FFF';
     config.ctx.fillRect(
       config.player.x,
       config.player.y,
@@ -39,10 +40,10 @@ const gameboard = {
       config.player.height
     );
     config.ctx.fillRect(
-      config.aiPlayer.x,
-      config.aiPlayer.y,
-      config.aiPlayer.width,
-      config.aiPlayer.height
+      config.cpuPlayer.x,
+      config.cpuPlayer.y,
+      config.cpuPlayer.width,
+      config.cpuPlayer.height
     );
     config.ctx.fillRect(
       config.ball.x,
@@ -59,7 +60,7 @@ const gameboard = {
     );
 
     config.ctx.fillText(
-      config.aiPlayer.score.toString(),
+      config.cpuPlayer.score.toString(),
       config.canvas.width / 2 + 300,
       100
     );
@@ -76,11 +77,11 @@ const gameboard = {
   check: {
     hasWinner() {
       if (config.player.score === settings.game.score.win) {
-        config.ctx.fillText('Player Wins', config.canvas.width / 2, 300);
+        config.ctx.fillText(labels.playerWins, config.canvas.width / 2, 300);
         config.gameOver = true;
       }
-      if (config.aiPlayer.score === settings.game.score.win) {
-        config.ctx.fillText('AI Wins', config.canvas.width / 2, 300);
+      if (config.cpuPlayer.score === settings.game.score.win) {
+        config.ctx.fillText(labels.cpuPlayerWins, config.canvas.width / 2, 300);
         config.gameOver = true;
       }
     }

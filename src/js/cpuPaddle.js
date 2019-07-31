@@ -6,42 +6,42 @@ import settings from './settings';
 const cpuPaddle = {
   // Initialize CPU paddle:
   init() {
-    config.aiPlayer = new Paddle(settings.game.directions.labels.right);
+    config.cpuPlayer = new Paddle(settings.game.directions.labels.right);
   },
 
   // Speed to set for CPU paddle:
   speed: {
     set() {
-      config.aiPlayer.speed = settings.game.element.ball.aiPlayerSpeed;
+      config.cpuPlayer.speed = settings.game.element.ball.aiPlayerSpeed;
     }
   },
 
   // Check movement and adjust speed according to paddle position:
   check: {
     movement() {
-      if (config.aiPlayer.y > config.ball.y - config.aiPlayer.height / 2) {
+      if (config.cpuPlayer.y > config.ball.y - config.cpuPlayer.height / 2) {
         if (config.ball.moveX === direction.right) {
-          config.aiPlayer.y -= config.aiPlayer.speed;
+          config.cpuPlayer.y -= config.cpuPlayer.speed;
         } else {
-          config.aiPlayer.y -= config.aiPlayer.speed;
+          config.cpuPlayer.y -= config.cpuPlayer.speed;
         }
       }
-      if (config.aiPlayer.y < config.ball.y - config.aiPlayer.height / 2) {
+      if (config.cpuPlayer.y < config.ball.y - config.cpuPlayer.height / 2) {
         if (config.ball.moveX === direction.right) {
-          config.aiPlayer.y += config.aiPlayer.speed;
+          config.cpuPlayer.y += config.cpuPlayer.speed;
         } else {
-          config.aiPlayer.y += config.aiPlayer.speed;
+          config.cpuPlayer.y += config.cpuPlayer.speed;
         }
       }
 
       // If AI tries to move off the board handle that
-      if (config.aiPlayer.y < 0) {
-        config.aiPlayer.y = 0;
+      if (config.cpuPlayer.y < 0) {
+        config.cpuPlayer.y = 0;
       } else if (
-        config.aiPlayer.y >=
-        config.canvas.height - config.aiPlayer.height
+        config.cpuPlayer.y >=
+        config.canvas.height - config.cpuPlayer.height
       ) {
-        config.aiPlayer.y = config.canvas.height - config.aiPlayer.height;
+        config.cpuPlayer.y = config.canvas.height - config.cpuPlayer.height;
       }
 
       if (
@@ -60,14 +60,14 @@ const cpuPaddle = {
 
       // Handle ball collison with AI paddle
       if (
-        config.ball.x - config.ball.width <= config.aiPlayer.x &&
-        config.ball.x >= config.aiPlayer.x - config.aiPlayer.width
+        config.ball.x - config.ball.width <= config.cpuPlayer.x &&
+        config.ball.x >= config.cpuPlayer.x - config.cpuPlayer.width
       ) {
         if (
-          config.ball.y <= config.aiPlayer.y + config.aiPlayer.height &&
-          config.ball.y + config.ball.height >= config.aiPlayer.y
+          config.ball.y <= config.cpuPlayer.y + config.cpuPlayer.height &&
+          config.ball.y + config.ball.height >= config.cpuPlayer.y
         ) {
-          config.ball.x = config.aiPlayer.x - config.ball.width;
+          config.ball.x = config.cpuPlayer.x - config.ball.width;
           config.ball.moveX = direction.left;
           document.getElementById('beep-paddle').play();
         }

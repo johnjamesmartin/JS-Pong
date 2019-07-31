@@ -77,13 +77,13 @@ const gameBall = {
       hasPlayerMissed() {
         if (config.ball.x <= 0) {
           document.getElementById('beep-fail').play();
-          gameBall.reset(config.aiPlayer, config.player);
+          gameBall.reset(config.cpuPlayer, config.player);
         }
       },
       hasCpuMissed() {
         if (config.ball.x >= config.canvas.width - config.ball.width) {
           document.getElementById('beep-fail').play();
-          gameBall.reset(config.player, config.aiPlayer);
+          gameBall.reset(config.player, config.cpuPlayer);
         }
       },
       hasBoundaryHit() {
