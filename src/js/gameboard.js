@@ -2,7 +2,7 @@ import config from './config';
 import playerPaddle from './playerPaddle';
 import settings from './settings';
 
-const canvasElement = {
+const gameboard = {
   // Initialize canvas element:
   init() {
     config.canvas = document.getElementById('my-canvas');
@@ -57,11 +57,19 @@ const canvasElement = {
       config.canvas.width / 2 - 300,
       100
     );
+
     config.ctx.fillText(
       config.aiPlayer.score.toString(),
       config.canvas.width / 2 + 300,
       100
     );
+
+    config.ctx.beginPath();
+    config.ctx.setLineDash([10, 10]);
+    config.ctx.moveTo(config.canvas.width / 2, config.canvas.height);
+    config.ctx.lineTo(config.canvas.width / 2, 0);
+    config.ctx.strokeStyle = '#FFF';
+    config.ctx.stroke();
   },
 
   // Check if we have a winner:
@@ -80,9 +88,9 @@ const canvasElement = {
 
   // Update canvas to redraw and check for a winner:
   update() {
-    canvasElement.draw();
-    canvasElement.check.hasWinner();
+    gameboard.draw();
+    gameboard.check.hasWinner();
   }
 };
 
-export default canvasElement;
+export default gameboard;

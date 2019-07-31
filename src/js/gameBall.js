@@ -76,20 +76,24 @@ const gameBall = {
     collision: {
       hasPlayerMissed() {
         if (config.ball.x <= 0) {
+          document.getElementById('beep-fail').play();
           gameBall.reset(config.aiPlayer, config.player);
         }
       },
       hasCpuMissed() {
         if (config.ball.x >= config.canvas.width - config.ball.width) {
+          document.getElementById('beep-fail').play();
           gameBall.reset(config.player, config.aiPlayer);
         }
       },
       hasBoundaryHit() {
         if (config.ball.y <= 0) {
           config.ball.moveY = direction.down;
+          document.getElementById('beep-boundary').play();
         }
         if (config.ball.y >= config.canvas.height - config.ball.height) {
           config.ball.moveY = direction.up;
+          document.getElementById('beep-boundary').play();
         }
       }
     }

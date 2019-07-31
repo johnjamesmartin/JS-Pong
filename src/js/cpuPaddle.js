@@ -54,7 +54,7 @@ const cpuPaddle = {
         ) {
           config.ball.x = config.player.x + config.ball.width;
           config.ball.moveX = direction.right;
-          //beepSound.play();
+          document.getElementById('beep-paddle').play();
         }
       }
 
@@ -69,7 +69,7 @@ const cpuPaddle = {
         ) {
           config.ball.x = config.aiPlayer.x - config.ball.width;
           config.ball.moveX = direction.left;
-          //beepSound.play();
+          document.getElementById('beep-paddle').play();
         }
       }
     }

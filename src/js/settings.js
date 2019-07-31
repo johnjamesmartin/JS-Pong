@@ -18,13 +18,13 @@ const settings = {
         aiPlayerSpeed: 6.8
       },
       canvas: {
-        width: 1400,
-        height: 800
+        height: 800,
+        width: 1400
       },
       paddle: {
-        width: 15,
         height: 65,
-        speed: 11
+        speed: 11,
+        width: 15
       }
     }
   }
